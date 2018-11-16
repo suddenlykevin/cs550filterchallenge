@@ -1,8 +1,9 @@
-from PIL import Image, ImageEnhance
+from PIL import Image, ImageDraw, ImageStat
 import PIL
 import sys
 
 image = Image.open(sys.argv[1])
+image.save("original.jpg")
 pixels = image.load()
 w, h = image.size
 
@@ -19,6 +20,4 @@ for x in range(w):
 			b+=1000
 		pixels[x,y] = (r,g,b)
 
-image.save("filtered1.jpg")
-
-# PIL.ImageChops.invert(image).save("filtered.jpg")
+PIL.ImageChops.invert(image).save("filtered.jpg")
