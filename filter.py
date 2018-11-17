@@ -44,9 +44,7 @@ for x in range(0, channel.width, sample):
 # saves new halftoned image
 halftoned.save("halftoned.jpg") 
 
-# colorizes halftoned image in purple (wanted blue but since it's only one value...)
+# colorizes halftoned image in purple and blue
 color = ImageOps.colorize(halftoned, (0,0,255), (255,0,255))
-# saves final image as a blend of halftoned and new colorized image (lightens)
-final = Image.blend(halftoned, color, 0.5)
-# saves final filtered image
-final.save("filtered.jpg")
+# saves final image
+color.save("filtered.jpg")
