@@ -3,10 +3,19 @@ Halftoning
 Kevin Xie CS550
 Healey
 
-Adapted from: https://stackaoverflow.com/questions/10572274/halftone-images-in-python
+Halftoning algorithm was heavily adapted and simplified from: 
+https://stackaoverflow.com/questions/10572274/halftone-images-in-python
+However, I made an effort to understand everything before I typed it.
+He/she was using all CMYK channels, offsetting, and merging, but I just
+wanted to halfshade one channel. Also, he/she seemed to be working in
+Python 2 or lower, since some of the commands could be simplified.
+The rest of the colorization was my choice.
 
+Sources:
+Halftoning - https://stackaoverflow.com/questions/10572274/halftone-images-in-python
 
-
+On My Honor, I have neither given nor received unauthorized aid.
+Kevin Xie 
 """
 
 from PIL import Image, ImageDraw, ImageStat, ImageFilter, ImageOps, ImageEnhance
@@ -36,7 +45,7 @@ for x in range(0, channel.width, sample):
 halftoned.save("halftoned.jpg") 
 
 # colorizes halftoned image in purple (wanted blue but since it's only one value...)
-color = ImageFilter.colorize(halftoned, (0,0,255), (255,0,255))
+color = ImageOps.colorize(halftoned, (0,0,255), (255,0,255))
 # saves final image as a blend of halftoned and new colorized image (lightens)
 final = Image.blend(halftoned, color, 0.5)
 # saves final filtered image
